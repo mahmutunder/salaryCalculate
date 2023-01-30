@@ -110,7 +110,7 @@ public class SalaryCalculator extends JFrame {
 // Set the default close operation and size of the frame
         setTitle("Salary Calculator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(280, 260);
+        setSize(280, 320);
         icon= new ImageIcon("logo-top.png").getImage();
         setIconImage(icon);
         setLocationRelativeTo(null);
