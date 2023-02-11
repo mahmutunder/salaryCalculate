@@ -32,7 +32,7 @@ public class SalaryCalculator extends JFrame {
 
         // Initialize and add the hourly rate text field
         hourlyRateField = new JTextField();
-        hourlyRateField.setBounds(100, 10, 165, 25);
+        hourlyRateField.setBounds(175, 10, 85, 25);
         add(hourlyRateField);
 
         // Initialize and add the hours worked per week label
@@ -42,7 +42,7 @@ public class SalaryCalculator extends JFrame {
 
         // Initialize and add the hours worked per week text field
         hoursWorkedField = new JTextField();
-        hoursWorkedField.setBounds(180, 40, 85, 25);
+        hoursWorkedField.setBounds(175, 40, 85, 25);
         add(hoursWorkedField);
 
         // Initialize and add the state tax rate label
@@ -52,7 +52,7 @@ public class SalaryCalculator extends JFrame {
 
         // Initialize and add the state tax rate text field
         taxRateField = new JTextField();
-        taxRateField.setBounds(100, 70, 165, 25);
+        taxRateField.setBounds(175, 70, 85, 25);
         add(taxRateField);
 
         // Initialize and add the federal tax rate label
@@ -62,7 +62,7 @@ public class SalaryCalculator extends JFrame {
 
         // Initialize and add the federal tax rate text field
         federalTaxRateField = new JTextField();
-        federalTaxRateField.setBounds(180, 100, 85, 25);
+        federalTaxRateField.setBounds(175, 100, 85, 25);
         add(federalTaxRateField);
 
         // Initialize and add the yearly salary label
@@ -89,21 +89,31 @@ public class SalaryCalculator extends JFrame {
         calculateButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Calculate the yearly salary
-                double hourlyRate = Double.parseDouble(hourlyRateField.getText());
-                int hoursWorked = Integer.parseInt(hoursWorkedField.getText());
-                double yearlySalary = hourlyRate * hoursWorked * 52;
-                yearlySalaryLabel.setText("Yearly Salary: $" + yearlySalary);
+                try {
 
-                // Calculate the state tax
-                double taxRate = Double.parseDouble(taxRateField.getText());
-                double stateTax = yearlySalary * (taxRate / 100);
-                stateTaxLabel.setText("State Tax: $" + stateTax);
 
-                // Calculate the federal tax
-                double federalTaxRate = Double.parseDouble(federalTaxRateField.getText());
-                double federalTax = yearlySalary * (federalTaxRate / 100);
-                federalTaxLabel.setText("Federal Tax: $" + federalTax);
+                    // Calculate the yearly salary
+                    double hourlyRate = Double.parseDouble(hourlyRateField.getText());
+                    int hoursWorked = Integer.parseInt(hoursWorkedField.getText());
+                    double yearlySalary = hourlyRate * hoursWorked * 52;
+                    yearlySalaryLabel.setText("Yearly Salary: $" + yearlySalary);
+
+                    // Calculate the state tax
+                    double taxRate = Double.parseDouble(taxRateField.getText());
+                    double stateTax = yearlySalary * (taxRate / 100);
+                    stateTaxLabel.setText("State Tax: $" + stateTax);
+
+                    // Calculate the federal tax
+                    double federalTaxRate = Double.parseDouble(federalTaxRateField.getText());
+                    double federalTax = yearlySalary * (federalTaxRate / 100);
+                    federalTaxLabel.setText("Federal Tax: $" + federalTax);
+                }catch (RuntimeException exception){
+                    JOptionPane.showMessageDialog(null,"Only Number!!!");
+                    taxRateField.setText("");
+                    federalTaxRateField.setText("");
+                    hourlyRateField.setText("");
+                    hoursWorkedField.setText("");
+                }
             }
         });
 
